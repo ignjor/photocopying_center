@@ -1,0 +1,57 @@
+{
+    "excel" : {
+        
+        "archivo" : "REGISTRO.xlsx",
+
+        "hoja" : "AGOSTO 2026",
+
+        "fila_inicio" : 3,
+
+
+        "fecha": {
+            "columna" : "A"
+        },
+
+        "hora": {
+            "columna" : "B"
+        },
+
+        "coordinador": {
+            "columna": "C"
+        },
+
+        "curso": {
+            "columna": "D"
+        },
+
+        "nu_hojas": {
+            "columna": "E"
+        },
+
+        "copias": {
+            "columna": "F"
+        },
+
+        "cant_copias": {
+            "columna": "G"
+        },
+
+        "caras": {
+            "columna": "H"
+        },
+
+        "cant_hojas": {
+            "columna": "I"
+        },
+
+	    
+        "documento": {
+            "columna": "J"
+	    }
+	
+        },
+
+    "cursos" : {
+        "archivo" : "cursos.json"
+    }
+}
