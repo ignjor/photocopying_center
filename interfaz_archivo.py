@@ -25,13 +25,18 @@ fuente_titulo = ("Segoe UI", 26, "bold")
 fuente_subtitulo = ("Segoe UI", 14)
 fuente_normal = ("Segoe UI", 12)
 
+
+## Definimos la clase para la funcionalidad de esta clase
 class Aplicacion(ctk.CTk):
 
+    # Definimos lo que necesitamos para llamar a lo visual
     def __init__(self):
         super().__init__()
 
+        # Y llamamos self que podria definirse como "a esta ventana"
         self.title("Centro de Fotocopias")
 
+        # Le ponemos la geomtria inicial que va a tener la ventana al abrir la ventana
         self.geometry("500x500")
 
         self.minsize(500, 400)
@@ -164,7 +169,6 @@ class Aplicacion(ctk.CTk):
             expand=True
         )
 
-
     def procesar_archivo(self, archivo):
 
         print(f"Archivo recibido {archivo}")
@@ -198,10 +202,10 @@ class Aplicacion(ctk.CTk):
 
         self.destroy()
 
-
-if __name__ == "__main__":
-    app = Aplicacion()
-    app.mainloop()
+    def mostrar_interfaz(self):
+        self.titulo.pack(pady=(60, 10))
+        self.subtitulo.pack(pady=(0, 35))
+        self.zona_archivo.pack()
 
 
         
