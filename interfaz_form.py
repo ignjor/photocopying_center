@@ -118,7 +118,7 @@ class Formulario(ctk.CTkFrame):
         self.letras = ctk.CTkButton
 
 
-        
+    
     def curso_seleccionado(self, curso):
         letra = self.cursos[curso]
         print(letra)  

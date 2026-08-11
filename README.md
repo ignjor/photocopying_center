@@ -26,6 +26,13 @@ Requerimiento de la libreria para poder leer los pdf.
 pip install PyMuPDF
 ```
 
+Requerimiento de la libreria para poder ver el entorno visual
+
+Requerimiento de la libreria para poder llamar al drag and drop
+
+Requerimiento de la libreria para poder llamar a win32
+
+
 ---
 
 ## Objetivos
@@ -41,3 +48,28 @@ pip install PyMuPDF
 - [ ] 5. Registrar en excel los datos de las variables rescatadas exactamente en las columnas y filas requeridas con orden correlativo
 
 - [ ] 6. Lo mismo con la fecha, hora, coordinadora. Optimizaciones finales y testeo.
+
+---
+## Historial 2026
+
+El historial recopia los avances del sistema durante su periodo inicial de desarrollo, el plazo objetivo del desarrollo son de 2 semanas.
+
+### Lunes 10 de Agosto
+
+- Desarrollo de las funciones iniciales del proyecto, el sistema lee las paginas sea de pdf o word mediante LibreOffice, aun no se desarrolla entorno visual.
+
+- Se desarrollo el .json con los cursos completos, aun no se importa ni se implementa dentro del proyecto.
+
+### Martes 11 de Agosto
+
+- Se desecho libreoffice, se utiliza una COM de Word, agiliza el desarrollo y la instalación del proyecto, la unica limitación es tener instalado Office.
+
+- Se desarrollo un entonro visual con CustomTkinter, ademas usamos otra libreria para usar el Drag and Drop desde outlook, se desarrollo un .py para poder arrastrar los archivos directamente desde outlook al sistema, se guardan en uan carpeta temporal.
+
+- Agregamos ventana incial para formulario con la cantidad de páginas del documento y el nombre del archivo
+
+- Se agrego un boton para volver a la ventana Drag and Drop inicial para Scannear mas archivos, de esa forma aprovechamos que aun no registra en excel, pero para saber la cantidad de paginas de forma rapida sin neceidad de abrirlo,
+
+- Se agrego la funcion para importar el .json con todos los cursos.
+
+- Se agrego el Label con los cursos importados, solo importa la key de los cursos, sin las letras.

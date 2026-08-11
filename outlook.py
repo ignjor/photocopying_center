@@ -7,6 +7,14 @@ import pythoncom
 import win32clipboard
 import win32com.server.policy
 
+
+## Este codigo funciona como protocolo para outloook, para que podamos recibir los archivos
+# arrastrados desde outlook sin la necesidad de tener que descargarlos y arrastrarlos al sistema de forma manual
+
+# de todas maneras los archivos se guardan en una carpeta temporal, pero no hay necesidad de hacerlo de forma manual
+# Este codigo habilita esa opción, arrastrar cosas directamente desde outlook.
+
+
 CARPETA_TEMPORAL = os.path.join(
     tempfile.gettempdir(),
     "ApoyoFotocopias"
