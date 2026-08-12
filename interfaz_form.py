@@ -51,7 +51,7 @@ class Formulario(ctk.CTkFrame):
         self.cantidad_hojas = cantidad_hojas
 
         # Aqui guardas la suma total, NO la mandes para el excel porque el excel deberia hacer la formula solito, si no es tu caso, no te preocupes mandalo nomas
-        # pero yo no lo hago.
+        # pero yo no lo agrego
         self.total_hojas = 0
 
 
@@ -136,9 +136,12 @@ class Formulario(ctk.CTkFrame):
 
         self.frame_letras = ctk.CTkFrame(
             self,
-            fg_color="transparent"
+            fg_color="transparent",
+            
+            
         )
-        self.frame_letras.pack(pady=(0,20))
+        self.frame_letras.pack(pady=(0,5))
+        
 
 
 ##
@@ -160,7 +163,12 @@ class Formulario(ctk.CTkFrame):
             checkbox = ctk.CTkCheckBox(
                 self.frame_letras,
                 text=letra,
+                font=("Segoe UI", 13, "bold"),
+                fg_color=color_boton,
+                corner_radius=30,
+                
                 command=self.actualizar_seleccion
+                
             )
 
             checkbox.pack(side="left", padx=5)

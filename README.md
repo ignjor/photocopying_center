@@ -73,3 +73,11 @@ El historial recopia los avances del sistema durante su periodo inicial de desar
 - Se agrego la funcion para importar el .json con todos los cursos.
 
 - Se agrego el Label con los cursos importados, solo importa la key de los cursos, sin las letras.
+
+### Miercoles 12 de Agosto
+
+- Se agrego la estructura para llamar las letras dentro de otro archivo e importarlas dentro del formulario.
+
+- Se agrego la estructura para ver visualmente las letras de cada curso y sumar sus resultados, se imprime en consola falta que lo hagas visual.
+
+- Se agrego la funcion para que puedas ademas de sumar, multiplicar por la cantidad de paginas del documento, tambien es por consola, falta agregar que puedas elegir 1 o 2 caras y se divida por el resultado del total de hojas.
