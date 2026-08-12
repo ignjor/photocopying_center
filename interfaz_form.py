@@ -1,6 +1,8 @@
 import customtkinter as ctk
 import os
-import json
+
+from cargar_cursos import cargar_cursos
+
 
 color_fondo = "#F5F5F5"
 color_tarjeta = "#FFFFFF"
@@ -19,15 +21,6 @@ color_primario = "#2563EB"
 fuente_titulo = ("Segoe UI", 26, "bold")
 fuente_subtitulo = ("Segoe UI", 14)
 fuente_normal = ("Segoe UI", 12)
-
-    #Funcion para cargar los cursos(en mi caso), pero los datos que quieras para calcular las copias
-    # Sean empleados o lo que necesites, pero claro, siguiendo la estructura del json
-def cargar_cursos():
-
-    ruta = os.path.join(os.path.dirname(__file__), "cursos.json")
-
-    with open(ruta, "r", encoding="utf-8") as archivo:
-        return json.load(archivo)
 
 
 
@@ -122,7 +115,6 @@ class Formulario(ctk.CTkFrame):
     def curso_seleccionado(self, curso):
         letra = self.cursos[curso]
         print(letra)  
-
 
 
 
