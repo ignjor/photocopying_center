@@ -32,15 +32,28 @@ class Formulario(ctk.CTkFrame):
 
         # Aqui llamamos a la funciones que importamos desde nuestro otro archivo
         self.cursos = cargar_cursos()
+
+        
         # Guardamos la letras seleccionadas dentor de una lista, así podemos listar y guardar A B o C segun el caso del curso
-        self.letras = []
+        
+        # Aqui las letras
+        self.letra_seleccionada = []
+
         # En esta variable vamos a guardar la suma completa de los alumnos selecciados, ese numero lo calculamos
         # segun la cantidad de las letras que guardamos.
+
+        #Aqui guardamos todos los alumnos seleccionados
         self.cantidad_alumnos = 0
+
         # Aqui vamos a guardar la cantidad de hojas total que vamos a usar, eso lo vamos a hacer multipicando las paginas del achivo
         # (que rescatamos del interfaz_archivo, esa variable cantidad_hojas) multiplicada con la variable anterior
         # nos falta hacer que podamos dividirlo por 1 o 2 caras, pero luego.
-        self.cantidad_hojas = 0
+        self.cantidad_hojas = cantidad_hojas
+
+        # Aqui guardas la suma total, NO la mandes para el excel porque el excel deberia hacer la formula solito, si no es tu caso, no te preocupes mandalo nomas
+        # pero yo no lo hago.
+        self.total_hojas = 0
+
 
         
         
@@ -121,20 +134,54 @@ class Formulario(ctk.CTkFrame):
         self.selector.pack(pady=(20,20))
 
 
-        self.letras = ctk.CTkButton
+        self.frame_letras = ctk.CTkFrame(
+            self,
+            fg_color="transparent"
+        )
+        self.frame_letras.pack(pady=(0,20))
 
 
-    
+##
     def curso_seleccionado(self, curso):
-        letra = self.cursos[curso]
-        print(letra)  
+        x = self.cursos[curso]
+        print(x)  
 
+        self.letra_seleccionada = []
+        self.cantidad_alumnos = 0
 
+        for widget in self.frame_letras.winfo_children():
+            widget.destroy()
 
+        letras = obtener_letras(self.cursos, curso)
+        self.checkboxes_letras = {}
 
+        for letra in letras:
 
+            checkbox = ctk.CTkCheckBox(
+                self.frame_letras,
+                text=letra,
+                command=self.actualizar_seleccion
+            )
 
+            checkbox.pack(side="left", padx=5)
+            self.checkboxes_letras[letra] = checkbox
 
+    def actualizar_seleccion(self):
+        self.letra_seleccionada = []
+        self.cantidad_alumnos = 0
+
+        for letra, checkbox in self.checkboxes_letras.items():
+
+            if checkbox.get() == 1:
+                self.letra_seleccionada.append(letra)
+                self.cantidad_alumnos += self.cursos[self.selector.get()][letra]
+
+        self.total_hojas = self.cantidad_alumnos * self.cantidad_hojas
+        print(self.cantidad_alumnos)
+            
+        print(self.letra_seleccionada)
+        print(self.total_hojas)
+                
 
 
     def volver(self):
