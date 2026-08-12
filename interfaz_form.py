@@ -1,7 +1,7 @@
 import customtkinter as ctk
 import os
 
-from cargar_cursos import cargar_cursos
+from cargar_cursos import cargar_cursos, obtener_letras
 
 
 color_fondo = "#F5F5F5"
@@ -29,7 +29,20 @@ class Formulario(ctk.CTkFrame):
         super().__init__(parent)
 
         self.parent = parent
+
+        # Aqui llamamos a la funciones que importamos desde nuestro otro archivo
         self.cursos = cargar_cursos()
+        # Guardamos la letras seleccionadas dentor de una lista, así podemos listar y guardar A B o C segun el caso del curso
+        self.letras = []
+        # En esta variable vamos a guardar la suma completa de los alumnos selecciados, ese numero lo calculamos
+        # segun la cantidad de las letras que guardamos.
+        self.cantidad_alumnos = 0
+        # Aqui vamos a guardar la cantidad de hojas total que vamos a usar, eso lo vamos a hacer multipicando las paginas del achivo
+        # (que rescatamos del interfaz_archivo, esa variable cantidad_hojas) multiplicada con la variable anterior
+        # nos falta hacer que podamos dividirlo por 1 o 2 caras, pero luego.
+        self.cantidad_hojas = 0
+
+        
         
 
         
