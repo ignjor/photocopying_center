@@ -3,7 +3,7 @@ from tkinterdnd2 import TkinterDnD
 import pythoncom
 
 from funciones.documentos import obtener_cantidad_hojas
-from interfaz.interfaz_form import Formulario
+from interfaz.interfaz_formDoc import Formulario
 from funciones.outlook import (registrar_outlook_drop, cerrar_outlook_drop)
 
 

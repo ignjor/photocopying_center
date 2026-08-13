@@ -54,10 +54,13 @@ class Formulario(ctk.CTkFrame):
         # pero yo no lo agrego
         self.total_hojas = 0
 
+        # Caras, aqui guardamos si la impresion es por 1 o ambas caras
+        # Siendo claro, predeterminado 1 para evitar que sistema divida por 0
+        self.total_caras = 1
+
+        self.hojas = 0
 
         
-        
-
         
         self.configure(fg_color = color_fondo)
 
@@ -83,6 +86,7 @@ class Formulario(ctk.CTkFrame):
         
         self.boton_volver.pack(anchor="w", padx=20, pady=(10, 10))
 
+
         # Y aqui quize llamar al nombre del archivo pero termine llamando a la ruta completa desde la carpeta
         # temporal que es donde se guarda, nada que hacer jasdja.
         self.archivo = archivo
@@ -96,6 +100,7 @@ class Formulario(ctk.CTkFrame):
         self.nombre.pack(
             pady=(10, 10)
         )
+
 
         # Definimos el texto inicial que nos va a decir la cantidad de hojas, lo llamamos desde la funcion anterior.
         self.texto = ctk.CTkLabel(
@@ -142,17 +147,70 @@ class Formulario(ctk.CTkFrame):
             
             
         )
-        self.frame_letras.pack(pady=(0,5))
+        self.frame_letras.pack(pady=(0,5), padx = (5))
         ## Aqui definimos la variable como set en 0, es decir el priemro de la
         # lista del json, en nuestro caso, en prekinder, de esa forma las letras
         # no esperan a recibir un dato para aprecer, como tenemos el set en 0
         # aparecen como si hubieramos selecionado el primer dato, asi evitamos errores
         # visuales cuando pongamos mas cosas abajo
         self.curso_seleccionado(cursos[0])
-        
 
 
-##
+        self.copias = ctk.CTkLabel(
+            self,
+            text=f"Total de Copias: {self.cantidad_alumnos}",
+            font=("Segoe UI", 17, "bold"),
+            text_color=color_secundario
+        )
+
+        self.copias.pack(
+            pady=(0, 10)
+        )
+
+        # Definimos la variable para guardar las caras, y los radio boton van juntitos, y llaman a la funcion
+        # del selector para cambiar automaticamente, una chulada papá
+        self.caras_selector = ctk.IntVar(value=1)
+        self.radio1 = ctk.CTkRadioButton(
+            self,
+            text = "Una Cara",
+            variable = self.caras_selector,
+            value=1,
+            font=("Segoe UI", 13, "bold"),
+            command=self.actualizar_seleccion
+        )
+        self.radio1.pack(pady=5)
+
+        self.radio2 = ctk.CTkRadioButton(
+            self,
+            text = "Ambas Caras",
+            variable = self.caras_selector,
+            value=2,
+            font=("Segoe UI", 13, "bold"),
+            command=self.actualizar_seleccion
+        )
+        self.radio2.pack(pady=5)
+
+
+        self.cant_total_hojas = ctk.CTkLabel(
+            self,
+            text=f"Total de Copias: {self.hojas}",
+            font=("Segoe UI", 17, "bold"),
+            text_color=color_secundario
+        )
+
+        self.cant_total_hojas.pack(
+            pady=(0, 10)
+        )
+
+
+
+################################################
+#Funciones que van fuera de lo visual.
+
+
+
+    # Aqui guardamos todas las funciones respetivasa llamar al curso y la matematica al elegir letra, se imprime en la consol
+    # Falta imprimirlo logicamente en pantalla obvio.
     def curso_seleccionado(self, curso):
         x = self.cursos[curso]
         print(x)  
@@ -170,7 +228,7 @@ class Formulario(ctk.CTkFrame):
 
             checkbox = ctk.CTkCheckBox(
                 self.frame_letras,
-                text=letra,
+                text=f"{letra} - ({self.cursos[curso][letra]} alumnos)",
                 font=("Segoe UI", 13, "bold"),
                 fg_color=color_boton,
                 corner_radius=30,
@@ -179,7 +237,7 @@ class Formulario(ctk.CTkFrame):
                 
             )
 
-            checkbox.pack(side="left", padx=5)
+            checkbox.pack(side="top", pady=5, anchor = "center")
             self.checkboxes_letras[letra] = checkbox
 
     def actualizar_seleccion(self):
@@ -193,10 +251,15 @@ class Formulario(ctk.CTkFrame):
                 self.cantidad_alumnos += self.cursos[self.selector.get()][letra]
 
         self.total_hojas = self.cantidad_alumnos * self.cantidad_hojas
+        self.hojas = self.total_hojas / self.caras_selector.get()
+
+        self.copias.configure(text=f"Total de Copias: {self.cantidad_alumnos}")
+        self.cant_total_hojas.configure(text = f"Total de Copias: {self.hojas}")
         print(self.cantidad_alumnos)
             
         print(self.letra_seleccionada)
         print(self.total_hojas)
+        print(self.hojas)
                 
 
 
