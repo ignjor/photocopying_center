@@ -33,9 +33,7 @@ class Formulario(ctk.CTkFrame):
         # Aqui llamamos a la funciones que importamos desde nuestro otro archivo
         self.cursos = cargar_cursos()
 
-        
         # Guardamos la letras seleccionadas dentor de una lista, así podemos listar y guardar A B o C segun el caso del curso
-        
         # Aqui las letras
         self.letra_seleccionada = []
 
@@ -59,6 +57,7 @@ class Formulario(ctk.CTkFrame):
         self.total_caras = 1
 
         self.hojas = 0
+
 
         
         
@@ -202,12 +201,37 @@ class Formulario(ctk.CTkFrame):
             pady=(0, 10)
         )
 
+        self.boton_siguiente = ctk.CTkButton(
+            self,
+            text= "Siguiente",
+            font=("Segoe UI", 15, "bold"),
+            height= 35,
+            width=70,
+
+            text_color=color_fondo,
+            fg_color=color_boton,
+            hover_color=color_apretado,
+            corner_radius=40,
+            border_color=color_secundario,
+
+            command=self.siguiente
+        )
+        
+        self.boton_siguiente.pack(pady=(10, 10))
+
+        self.mensaje_error = ctk.CTkLabel(
+            self,
+            text="Selecciona un curso para continuar",
+            font=("Segoe UI", 17, "bold"),
+            text_color=color_primario
+        )
+
+
+
 
 
 ################################################
 #Funciones que van fuera de lo visual.
-
-
 
     # Aqui guardamos todas las funciones respetivasa llamar al curso y la matematica al elegir letra, se imprime en la consol
     # Falta imprimirlo logicamente en pantalla obvio.
@@ -266,7 +290,29 @@ class Formulario(ctk.CTkFrame):
     def volver(self):
         self.destroy()
         self.parent.mostrar_interfaz()
-        
+
+    # Creamos el boton siguiente, lo que hacemos es mandar tooodos los datos que necesitamos
+    # a la otra ventana para registrar en el excel, ya eso es mas facil porque ya tenemos todos los datos.
+    def siguiente(self):
+        datos = {
+            "archivo": self.archivo,
+            "curso": self.selector.get(),
+            "letras": self.letra_seleccionada,
+            "alumnos": self.cantidad_alumnos,
+            "hojas": self.hojas,
+            "caras": self.caras_selector.get()
+        }
+        print(datos)
+    # Hacemos que cuando letras este vacio, no pase a la sieguiente pagina hasta que selecione una letra por lo menos
+    
+        if len(datos["letras"]) == 0:
+           self.mensaje_error.pack(pady=(0, 10))
+           return
+
+    # Si hay letra pasamos a la siguiente ventana pasandole los datos, pero no la destruimos, por si tenemos que volver
+    # despues.
+        self.pack_forget()
+        self.parent.mostrar_registrar(datos, self)
 
         
 

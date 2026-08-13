@@ -4,6 +4,7 @@ import pythoncom
 
 from funciones.documentos import obtener_cantidad_hojas
 from interfaz.interfaz_formDoc import Formulario
+from interfaz.interfaz_registrar import Registrar
 from funciones.outlook import (registrar_outlook_drop, cerrar_outlook_drop)
 
 
@@ -36,11 +37,11 @@ class Aplicacion(ctk.CTk):
         self.title("Centro de Fotocopias")
 
         # Le ponemos la geomtria inicial que va a tener la ventana al abrir la ventana
-        self.geometry("500x500")
+        self.geometry("500x600")
 
-        self.minsize(500, 400)
+        self.minsize(500, 600)
 
-        self.resizable(False, True)
+        self.resizable(False, False)
 
         self.configure(fg_color = color_fondo)
 
@@ -205,6 +206,10 @@ class Aplicacion(ctk.CTk):
         self.titulo.pack(pady=(60, 10))
         self.subtitulo.pack(pady=(0, 35))
         self.zona_archivo.pack()
+
+    def mostrar_registrar(self, datos, formulario):
+        self.registrar = Registrar(self, datos, formulario)
+        self.registrar.pack(fill="both", expand=True)
 
 
         
