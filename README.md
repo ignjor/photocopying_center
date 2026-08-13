@@ -98,3 +98,7 @@ El historial recopia los avances del sistema durante su periodo inicial de desar
 - Se agrego que predeterminadamente curso[0] dentro de la lista del json cuando cargue la ventana de formulario, asi evitamos errores cuando coloquemos cosas mas abajo.
 
 ### Jueves 13 de Agosto v2
+
+- Agregamos la estructura para elegir las caras, se imprime en pantalla y se hace la division correctamente, aunque no queremos imprimir la division en el excel, la idea es que el excel lo haga solo, o podemos imprimir igual no hay problema, depende de como sea el excel.
+
+- Renombramos el form como formDoc para cuando se recibe el doc, proximamente lo hacemos cuando haya que ingresar las paginas de forma manual
