@@ -41,9 +41,11 @@ Requerimiento de la libreria para poder llamar a win32
 
 - [x] 2. Interfaz visual en CustomTkinter con drag and drop con cualquier archivo sea .pdf o .docx desde el correo sin necesidad de guardarlo.
 
-- [ ] 3. Mostrar dentro de la interfaz visual y poder seleccionar la cantidad de copias segun el curso que seleccionemos, sea A B o C. Calcular automaticamente
+- [x] 3. Mostrar dentro de la interfaz visual y poder seleccionar la cantidad de copias segun el curso que seleccionemos, sea A B o C. Calcular automaticamente
 
-- [ ] 4. Presentar dentro del sistema el calculo para el total de copias, dividirlo segun la cantidad de caras de la impresión.
+- [x] 4. Presentar dentro del sistema el calculo para el total de copias, dividirlo segun la cantidad de caras de la impresión.
+
+- [ ] 5. Pedir manualmente fecha(con fecha de hoy predeterminado), hora tambien, coordinador(idealmente con json podemor impotarlos, tambien manual para cuando son profes).
 
 - [ ] 5. Registrar en excel los datos de las variables rescatadas exactamente en las columnas y filas requeridas con orden correlativo
 
@@ -66,9 +68,14 @@ El historial recopia los avances del sistema durante su periodo inicial de desar
 
 - Se desarrollo un entonro visual con CustomTkinter, ademas usamos otra libreria para usar el Drag and Drop desde outlook, se desarrollo un .py para poder arrastrar los archivos directamente desde outlook al sistema, se guardan en uan carpeta temporal.
 
+### Martes 11 de Agosto v2 
+
 - Agregamos ventana incial para formulario con la cantidad de páginas del documento y el nombre del archivo
 
 - Se agrego un boton para volver a la ventana Drag and Drop inicial para Scannear mas archivos, de esa forma aprovechamos que aun no registra en excel, pero para saber la cantidad de paginas de forma rapida sin neceidad de abrirlo,
+
+
+### Martes 11 de Agosto v3
 
 - Se agrego la funcion para importar el .json con todos los cursos.
 
@@ -80,4 +87,14 @@ El historial recopia los avances del sistema durante su periodo inicial de desar
 
 - Se agrego la estructura para ver visualmente las letras de cada curso y sumar sus resultados, se imprime en consola falta que lo hagas visual.
 
+### Miercoles 12 de Agosto v2
+
 - Se agrego la funcion para que puedas ademas de sumar, multiplicar por la cantidad de paginas del documento, tambien es por consola, falta agregar que puedas elegir 1 o 2 caras y se divida por el resultado del total de hojas.
+
+### Jueves 13 de Agosto
+
+- Cambios en la estructura del proyecto, como cada vez son mas archivos se crearon carpetas y las respectivas importaciones dentro de los archivos (python hizo solo los cambios en las importaciones te amo python).
+
+- Se agrego que predeterminadamente curso[0] dentro de la lista del json cuando cargue la ventana de formulario, asi evitamos errores cuando coloquemos cosas mas abajo.
+
+### Jueves 13 de Agosto v2

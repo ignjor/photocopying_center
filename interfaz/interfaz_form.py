@@ -1,7 +1,7 @@
 import customtkinter as ctk
 import os
 
-from cargar_cursos import cargar_cursos, obtener_letras
+from cargar_datos.cargar_cursos import cargar_cursos, obtener_letras
 
 
 color_fondo = "#F5F5F5"
@@ -109,7 +109,7 @@ class Formulario(ctk.CTkFrame):
             pady=(0, 10)
         )
 
-
+        cursos = list(self.cursos.keys())
         #Este ComboBox es para llamar al selector
         self.selector = ctk.CTkOptionMenu(
             self,
@@ -132,6 +132,8 @@ class Formulario(ctk.CTkFrame):
 
         )
         self.selector.pack(pady=(20,20))
+        self.selector.set(cursos[0])
+
 
 
         self.frame_letras = ctk.CTkFrame(
@@ -141,6 +143,12 @@ class Formulario(ctk.CTkFrame):
             
         )
         self.frame_letras.pack(pady=(0,5))
+        ## Aqui definimos la variable como set en 0, es decir el priemro de la
+        # lista del json, en nuestro caso, en prekinder, de esa forma las letras
+        # no esperan a recibir un dato para aprecer, como tenemos el set en 0
+        # aparecen como si hubieramos selecionado el primer dato, asi evitamos errores
+        # visuales cuando pongamos mas cosas abajo
+        self.curso_seleccionado(cursos[0])
         
 
 

@@ -2,10 +2,9 @@ import customtkinter as ctk
 from tkinterdnd2 import TkinterDnD
 import pythoncom
 
-from documentos import obtener_cantidad_hojas
-from interfaz_form import Formulario
-from outlook import (registrar_outlook_drop, cerrar_outlook_drop)
-
+from funciones.documentos import obtener_cantidad_hojas
+from interfaz.interfaz_form import Formulario
+from funciones.outlook import (registrar_outlook_drop, cerrar_outlook_drop)
 
 
 ctk.set_ctk_parent_class(TkinterDnD.Tk)
