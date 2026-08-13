@@ -110,4 +110,7 @@ def obtener_cantidad_hojas(archivo):
     elif extension == ".docx":
         return contar_paginas_word(archivo)
 
+    elif extension == ".doc":
+        return contar_paginas_word(archivo)
+
     else : raise ValueError("El archivo es imcompatible")
