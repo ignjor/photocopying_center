@@ -172,6 +172,7 @@ class Formulario(ctk.CTkFrame):
         self.radio1 = ctk.CTkRadioButton(
             self,
             text = "Una Cara",
+            text_color=color_texto,
             variable = self.caras_selector,
             value=1,
             font=("Segoe UI", 13, "bold"),
@@ -182,6 +183,7 @@ class Formulario(ctk.CTkFrame):
         self.radio2 = ctk.CTkRadioButton(
             self,
             text = "Ambas Caras",
+            text_color=color_texto,
             variable = self.caras_selector,
             value=2,
             font=("Segoe UI", 13, "bold"),
@@ -253,6 +255,7 @@ class Formulario(ctk.CTkFrame):
             checkbox = ctk.CTkCheckBox(
                 self.frame_letras,
                 text=f"{letra} - ({self.cursos[curso][letra]} alumnos)",
+                text_color=color_texto,
                 font=("Segoe UI", 13, "bold"),
                 fg_color=color_boton,
                 corner_radius=30,
