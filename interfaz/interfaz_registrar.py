@@ -59,7 +59,7 @@ class Registrar(ctk.CTkFrame):
         self.zona_resumen = ctk.CTkLabel(
             self,
             width=350,
-            height=220,
+            height=400,
             fg_color=color_tarjeta,
             border_width=2,
             border_color=color_borde,
@@ -78,13 +78,72 @@ class Registrar(ctk.CTkFrame):
         )
         self.texto_resumen.pack(pady = (5, 5))
 
+        self.texto_fecha = ctk.CTkLabel(
+            self.zona_resumen,
+            text=f"Fecha:",
+            font=("Segoe UI", 10, "bold"),
+            text_color=color_texto
+        )
+        self.texto_fecha.pack(pady=(1, 1))
+
+        self.texto_hora = ctk.CTkLabel(
+            self.zona_resumen,
+            text=f"Hora:",
+            font=("Segoe UI", 10, "bold"),
+            text_color=color_texto
+        )
+        self.texto_hora.pack(pady=(1, 1))
+
+        self.texto_coordinador = ctk.CTkLabel(
+            self.zona_resumen,
+            text=f"Fecha:",
+            font=("Segoe UI", 10, "bold"),
+            text_color=color_texto
+        )
+        self.texto_coordinador.pack(pady=(1, 1))
+
+
         self.texto_archivo = ctk.CTkLabel(
             self.zona_resumen,
             text=f"Archivo: {self.nombre_archivo}",
             font=("Segoe UI", 10, "bold"),
-            text_color=color_secundario
+            text_color=color_texto
         )
-        self.texto_archivo.pack(pady=(5, 5))
+        self.texto_archivo.pack(pady=(1, 1))
+
+
+        self.texto_curso = ctk.CTkLabel(
+            self.zona_resumen,
+            text=f"Curso: {datos["curso"]} {datos["letras"]}",
+            font=("Segoe UI", 10, "bold"),
+            text_color=color_texto
+        )
+        self.texto_curso.pack(pady=(1, 1))
+
+        self.texto_copias = ctk.CTkLabel(
+            self.zona_resumen,
+            text=f"Copias: {datos["alumnos"]}",
+            font=("Segoe UI", 10, "bold"),
+            text_color=color_texto
+        )
+        self.texto_copias.pack(pady=(1, 1))
+
+        self.texto_caras = ctk.CTkLabel(
+            self.zona_resumen,
+            text=f"Caras: {datos["caras"]}",
+            font=("Segoe UI", 10, "bold"),
+            text_color=color_texto
+        )
+        self.texto_caras.pack(pady=(1, 1))
+
+        self.texto_hojas = ctk.CTkLabel(
+            self.zona_resumen,
+            text=f"Hojas: {datos["hojas"]}",
+            font=("Segoe UI", 10, "bold"),
+            text_color=color_texto
+        )
+        self.texto_hojas.pack(pady=(1, 1))
+
 
 
         self.boton_registrar = ctk.CTkButton(
