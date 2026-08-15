@@ -81,7 +81,7 @@ class Aplicacion(ctk.CTk):
         self.zona_archivo = ctk.CTkLabel(
             self,
             width=350,
-            height=220,
+            height=350,
             fg_color=color_tarjeta,
             border_width=2,
             border_color=color_borde,

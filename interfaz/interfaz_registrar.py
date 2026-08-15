@@ -2,6 +2,10 @@ import customtkinter as ctk
 from cargar_datos.cargar_coordinadores import Coordinadores
 import os
 
+# importamos libreria para que podamos usar la fecha dentro de nuestro input de fecha, y qu
+# agarre la fecha del sistema para colocar le fecha de hoy como predeteminada.
+from datetime import datetime
+
 
 color_fondo = "#F5F5F5"
 
@@ -36,7 +40,12 @@ class Registrar(ctk.CTkFrame):
         self.datos = datos
 
         self.nombre_archivo = os.path.basename(datos["archivo"])
-        
+
+        # definimo la variable que va a guardar la fecha de hoy, asi la llamamos despues cuando la necesiemos llamar
+        # dentro del sistema del input.
+        ahora = datetime.now()
+        self.fecha_actual = ahora.strftime("%d/%m/%Y")
+        self.hora_actual = ahora.strftime("%H:%M")
 
         self.configure(fg_color = color_fondo)
 
@@ -58,11 +67,46 @@ class Registrar(ctk.CTkFrame):
         
         self.boton_volver.pack(anchor="w", padx=20, pady=(10, 10))
 
+        self.zona_inputfecha = ctk.CTkEntry(
+            self,
+            placeholder_text="dd/mm/aaaa",
+            width=180,
+            height=35,
+            font=("Segoe UI", 13, "bold")
+        )
+        self.zona_inputfecha.pack(pady=(5,5))
+        self.zona_inputfecha.insert(0, self.fecha_actual)
+        self.zona_inputfecha.bind(
+            "<KeyRelease>",
+            self.actualizar_resumen
+        )
 
+        self.zona_inputhora = ctk.CTkEntry(
+            self,
+            placeholder_text="hh:mm",
+            width=180,
+            height=35,
+            font=("Segoe UI", 13, "bold")
+        )
+        self.zona_inputhora.pack(pady=(5,5))
+        self.zona_inputhora.insert(0, self.hora_actual)
+        self.zona_inputhora.bind(
+            "<KeyRelease>",
+            self.actualizar_resumen
+        )
+
+
+
+
+
+
+
+# Zona completa del label de resumen, llamamos los datos de la lista datos que mandamos 
+# desde el otro archivo.
         self.zona_resumen = ctk.CTkLabel(
             self,
             width=350,
-            height=400,
+            height=350,
             fg_color=color_tarjeta,
             border_width=2,
             border_color=color_borde,
@@ -83,16 +127,16 @@ class Registrar(ctk.CTkFrame):
 
         self.texto_fecha = ctk.CTkLabel(
             self.zona_resumen,
-            text=f"Fecha:",
-            font=("Segoe UI", 10, "bold"),
+            text=f"Fecha:{self.zona_inputfecha} ",
+            font=("Segoe UI", 13, "bold"),
             text_color=color_texto
         )
         self.texto_fecha.pack(pady=(1, 1))
 
         self.texto_hora = ctk.CTkLabel(
             self.zona_resumen,
-            text=f"Hora:",
-            font=("Segoe UI", 10, "bold"),
+            text=f"Hora: {self.zona_inputhora}",
+            font=("Segoe UI", 13, "bold"),
             text_color=color_texto
         )
         self.texto_hora.pack(pady=(1, 1))
@@ -100,7 +144,7 @@ class Registrar(ctk.CTkFrame):
         self.texto_coordinador = ctk.CTkLabel(
             self.zona_resumen,
             text=f"Fecha:",
-            font=("Segoe UI", 10, "bold"),
+            font=("Segoe UI", 13, "bold"),
             text_color=color_texto
         )
         self.texto_coordinador.pack(pady=(1, 1))
@@ -109,7 +153,7 @@ class Registrar(ctk.CTkFrame):
         self.texto_archivo = ctk.CTkLabel(
             self.zona_resumen,
             text=f"Archivo: {self.nombre_archivo}",
-            font=("Segoe UI", 10, "bold"),
+            font=("Segoe UI", 13, "bold"),
             text_color=color_texto
         )
         self.texto_archivo.pack(pady=(1, 1))
@@ -118,7 +162,7 @@ class Registrar(ctk.CTkFrame):
         self.texto_curso = ctk.CTkLabel(
             self.zona_resumen,
             text=f"Curso: {datos["curso"]} {datos["letras"]}",
-            font=("Segoe UI", 10, "bold"),
+            font=("Segoe UI", 13, "bold"),
             text_color=color_texto
         )
         self.texto_curso.pack(pady=(1, 1))
@@ -126,7 +170,7 @@ class Registrar(ctk.CTkFrame):
         self.texto_copias = ctk.CTkLabel(
             self.zona_resumen,
             text=f"Copias: {datos["alumnos"]}",
-            font=("Segoe UI", 10, "bold"),
+            font=("Segoe UI", 13, "bold"),
             text_color=color_texto
         )
         self.texto_copias.pack(pady=(1, 1))
@@ -134,7 +178,7 @@ class Registrar(ctk.CTkFrame):
         self.texto_caras = ctk.CTkLabel(
             self.zona_resumen,
             text=f"Caras: {datos["caras"]}",
-            font=("Segoe UI", 10, "bold"),
+            font=("Segoe UI", 13, "bold"),
             text_color=color_texto
         )
         self.texto_caras.pack(pady=(1, 1))
@@ -142,7 +186,7 @@ class Registrar(ctk.CTkFrame):
         self.texto_hojas = ctk.CTkLabel(
             self.zona_resumen,
             text=f"Hojas: {datos["hojas"]}",
-            font=("Segoe UI", 10, "bold"),
+            font=("Segoe UI", 13, "bold"),
             text_color=color_texto
         )
         self.texto_hojas.pack(pady=(1, 1))
@@ -170,9 +214,17 @@ class Registrar(ctk.CTkFrame):
     
 
 #########################################
-# Funciones no visualees
+# Funciones
     def volver(self):
         self.destroy()
         self.formulario.pack(fill="both", expand=True)
 
-    
+    # Aqui en parte vamos a hacer el evento para que cuando escribamos en lo que sea
+    # Fecha y ahora se actualice al momento en el resumen, es solo visual
+    def actualizar_resumen(self, event = None):
+        self.texto_fecha.configure(
+            text=f"Fecha: {self.zona_inputfecha.get()}"
+        )
+        self.texto_hora.configure(
+            text=f"Hora: {self.zona_inputhora.get()}"
+        )
