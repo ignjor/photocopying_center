@@ -23,6 +23,9 @@ fuente_subtitulo = ("Segoe UI", 14)
 fuente_normal = ("Segoe UI", 12)
 
 
+## Aqui vamos a llama los datos del codigo anterior, del formulario
+# y vamos a imprimirlos como un resumen como una vista previa antes de imprimirlo dentro del excel
+
 class Registrar(ctk.CTkFrame):
     def __init__(self, parent, datos, formulario):
         super().__init__(parent)
@@ -30,7 +33,7 @@ class Registrar(ctk.CTkFrame):
         self.parent = parent
         self.formulario = formulario
 
-        self.datos = datos,
+        self.datos = datos
 
         self.nombre_archivo = os.path.basename(datos["archivo"])
         
