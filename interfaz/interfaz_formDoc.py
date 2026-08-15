@@ -299,6 +299,7 @@ class Formulario(ctk.CTkFrame):
     def siguiente(self):
         datos = {
             "archivo": self.archivo,
+            "cant_hojas_archivo": self.cantidad_hojas,
             "curso": self.selector.get(),
             "letras": self.letra_seleccionada,
             "alumnos": self.cantidad_alumnos,

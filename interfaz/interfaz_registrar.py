@@ -39,7 +39,8 @@ class Registrar(ctk.CTkFrame):
 
         self.datos = datos
 
-        self.nombre_archivo = os.path.basename(datos["archivo"])
+        self.nombre_archivo = os.path.splitext(os.path.basename(datos["archivo"]))[0]
+
 
         # definimo la variable que va a guardar la fecha de hoy, asi la llamamos despues cuando la necesiemos llamar
         # dentro del sistema del input.
@@ -64,9 +65,17 @@ class Registrar(ctk.CTkFrame):
 
             command=self.volver
         )
-        
         self.boton_volver.pack(anchor="w", padx=20, pady=(10, 10))
 
+        self.fecha = ctk.CTkLabel(
+            self,
+            text="Fecha del Registro:",
+            font=("Segoe UI", 17, "bold"),
+            text_color=color_secundario
+        )
+        self.fecha.pack(
+            pady=(0, 10)
+        )
         self.zona_inputfecha = ctk.CTkEntry(
             self,
             placeholder_text="dd/mm/aaaa",
@@ -79,6 +88,16 @@ class Registrar(ctk.CTkFrame):
         self.zona_inputfecha.bind(
             "<KeyRelease>",
             self.actualizar_resumen
+        )
+
+        self.hora = ctk.CTkLabel(
+            self,
+            text="Hora del Registro: ",
+            font=("Segoe UI", 17, "bold"),
+            text_color=color_secundario
+        )
+        self.hora.pack(
+            pady=(0, 10)
         )
 
         self.zona_inputhora = ctk.CTkEntry(
@@ -94,8 +113,6 @@ class Registrar(ctk.CTkFrame):
             "<KeyRelease>",
             self.actualizar_resumen
         )
-
-
 
 
 
@@ -206,7 +223,7 @@ class Registrar(ctk.CTkFrame):
             corner_radius=40,
             border_color=color_secundario,
 
-            command=self.volver
+            command=self.registrar
         )
         
         self.boton_registrar.pack(pady=(10, 10))
@@ -228,3 +245,22 @@ class Registrar(ctk.CTkFrame):
         self.texto_hora.configure(
             text=f"Hora: {self.zona_inputhora.get()}"
         )
+
+    def registrar(self):
+        fecha = self.zona_inputfecha.get()
+        hora = self.zona_inputhora.get()
+
+        #Nos falta aun la variable del coordinador
+        datos_registro = {
+            "fecha" : fecha,
+            "hora" : hora,
+            "archivo": self.nombre_archivo,
+            "hojas": self.datos["cant_hojas_archivo"],
+            "curso": self.datos["curso"],
+            "letras": self.datos["letras"],
+            "alumnos": self.datos["alumnos"],
+            "caras": self.datos["caras"],
+         ## Hojas no lo mandamos porque el excel tiene su propia formula   "hojas": self.datos["hojas"],
+         # Tampoco mandamos la multiplicacion entre copias y hojas del doc por eso mismo.
+        }
+        print(datos_registro)
