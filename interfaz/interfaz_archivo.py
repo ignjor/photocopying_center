@@ -37,9 +37,9 @@ class Aplicacion(ctk.CTk):
         self.title("Centro de Fotocopias")
 
         # Le ponemos la geomtria inicial que va a tener la ventana al abrir la ventana
-        self.geometry("500x600")
+        self.geometry("500x650")
 
-        self.minsize(500, 600)
+        self.minsize(500, 650)
 
         self.resizable(False, False)
 
@@ -81,7 +81,7 @@ class Aplicacion(ctk.CTk):
         self.zona_archivo = ctk.CTkLabel(
             self,
             width=350,
-            height=350,
+            height=400,
             fg_color=color_tarjeta,
             border_width=2,
             border_color=color_borde,

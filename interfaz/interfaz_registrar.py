@@ -38,6 +38,10 @@ class Registrar(ctk.CTkFrame):
         self.formulario = formulario
 
         self.datos = datos
+        self.lista_coordinadores = Coordinadores()["coordinadores"]
+
+
+
 
         self.nombre_archivo = os.path.splitext(os.path.basename(datos["archivo"]))[0]
 
@@ -65,7 +69,8 @@ class Registrar(ctk.CTkFrame):
 
             command=self.volver
         )
-        self.boton_volver.pack(anchor="w", padx=20, pady=(10, 10))
+        self.boton_volver.pack(anchor="w", padx=20, pady=(10, 0))
+
 
         self.fecha = ctk.CTkLabel(
             self,
@@ -74,7 +79,7 @@ class Registrar(ctk.CTkFrame):
             text_color=color_secundario
         )
         self.fecha.pack(
-            pady=(0, 10)
+            pady=(0, 2)
         )
         self.zona_inputfecha = ctk.CTkEntry(
             self,
@@ -115,7 +120,27 @@ class Registrar(ctk.CTkFrame):
         )
 
 
-
+        self.coordinador = ctk.CTkLabel(
+            self,
+            text="Coordinador:",
+            font=("Segoe UI", 17, "bold"),
+            text_color=color_secundario
+        )
+        self.coordinador.pack(
+            pady=(0, 10)
+        )
+        self.zona_inputcoordinador = ctk.CTkEntry(
+            self,
+            placeholder_text="Coordinador ",
+            width=180,
+            height=35,
+            font=("Segoe UI", 13, "bold")
+        )
+        self.zona_inputcoordinador.pack(pady=(5,5))
+        self.zona_inputcoordinador.bind(
+            "<KeyRelease>",
+            self.actualizar_resumen
+        )
 
 
 # Zona completa del label de resumen, llamamos los datos de la lista datos que mandamos 
@@ -160,7 +185,7 @@ class Registrar(ctk.CTkFrame):
 
         self.texto_coordinador = ctk.CTkLabel(
             self.zona_resumen,
-            text=f"Fecha:",
+            text=f"Coordinador: {self.zona_inputcoordinador}",
             font=("Segoe UI", 13, "bold"),
             text_color=color_texto
         )
@@ -245,15 +270,20 @@ class Registrar(ctk.CTkFrame):
         self.texto_hora.configure(
             text=f"Hora: {self.zona_inputhora.get()}"
         )
+        self.texto_coordinador.configure(
+            text=f"Coordinador: {self.zona_inputcoordinador.get()}"
+        )
 
-    def registrar(self):
+    def Registrar(self):
         fecha = self.zona_inputfecha.get()
         hora = self.zona_inputhora.get()
+        coordinador = self.zona_inputcoordinador.get()
 
         #Nos falta aun la variable del coordinador
         datos_registro = {
             "fecha" : fecha,
             "hora" : hora,
+            "coordinador" : coordinador,
             "archivo": self.nombre_archivo,
             "hojas": self.datos["cant_hojas_archivo"],
             "curso": self.datos["curso"],
@@ -264,3 +294,8 @@ class Registrar(ctk.CTkFrame):
          # Tampoco mandamos la multiplicacion entre copias y hojas del doc por eso mismo.
         }
         print(datos_registro)
+
+
+
+
+    

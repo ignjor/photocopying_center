@@ -32,7 +32,7 @@
             "columna": "F"
         },
 
-        "cant_copias": {
+        "cant_copias_total": {
             "columna": "G"
         },
 
@@ -40,7 +40,7 @@
             "columna": "H"
         },
 
-        "cant_hojas": {
+        "cant_hojas_tota": {
             "columna": "I"
         },
 
